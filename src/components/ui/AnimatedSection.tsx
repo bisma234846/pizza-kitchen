@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { useDevicePerformance, getMotionProps } from "@/hooks/useDevicePerformance";
@@ -24,11 +24,25 @@ export default function AnimatedSection({
   const caps = useDevicePerformance();
   const motionProps = getMotionProps(caps, { delay, y });
 
-  const Component = motion[as];
+  if (as === "section") {
+    return (
+      <motion.section id={id} className={className} {...motionProps}>
+        {children}
+      </motion.section>
+    );
+  }
+
+  if (as === "article") {
+    return (
+      <motion.article id={id} className={className} {...motionProps}>
+        {children}
+      </motion.article>
+    );
+  }
 
   return (
-    <Component id={id} className={className} {...motionProps}>
+    <motion.div id={id} className={className} {...motionProps}>
       {children}
-    </Component>
+    </motion.div>
   );
 }

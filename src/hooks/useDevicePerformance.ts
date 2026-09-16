@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import type { DeviceCapabilities, DeviceTier } from "@/types";
@@ -129,7 +129,7 @@ export function getMotionProps(
       initial: { opacity: 0, y: y / 2 },
       whileInView: { opacity: 1, y: 0 },
       viewport: { once: true, margin: "-60px" },
-      transition: { duration: duration * 0.8, delay, ease: "easeOut" },
+      transition: { duration: duration * 0.8, delay, ease: "easeOut" as const },
     };
   }
 
@@ -141,7 +141,7 @@ export function getMotionProps(
     transition: {
       duration,
       delay,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
     },
   };
 }
