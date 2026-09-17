@@ -1,4 +1,4 @@
-﻿import type {
+import type {
   MenuCategory,
   SpecialDeal,
   Testimonial,
@@ -41,12 +41,12 @@ export const CONTACT: ContactInfo = {
 // NAVIGATION
 // ============================================
 export const NAV_LINKS: NavLink[] = [
-  { id: "home", label: "Home", href: "#home" },
-  { id: "about", label: "About", href: "#about" },
-  { id: "menu", label: "Menu", href: "#menu" },
-  { id: "specials", label: "Specials", href: "#specials" },
-  { id: "reviews", label: "Reviews", href: "#reviews" },
-  { id: "contact", label: "Contact", href: "#contact" },
+  { id: "home", label: "Home", href: "/" },
+  { id: "about", label: "About", href: "/about" },
+  { id: "menu", label: "Menu", href: "/menu" },
+  { id: "specials", label: "Specials", href: "/specials" },
+  { id: "reviews", label: "Reviews", href: "/reviews" },
+  { id: "contact", label: "Contact", href: "/contact" },
 ];
 
 // ============================================

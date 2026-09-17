@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";

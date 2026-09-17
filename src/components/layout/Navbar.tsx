@@ -1,25 +1,36 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Menu, X, MessageCircle } from "lucide-react";
-import { RESTAURANT, CONTACT, NAV_LINKS } from "@/lib/data";
+import { CONTACT, NAV_LINKS } from "@/lib/data";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
+
   return (
     <>
-      {/* Top Banner (Phone & Address) */}
+      {/* Top Banner */}
       <div className="bg-stone-900 text-stone-300 text-xs py-2 px-4 border-b border-stone-800">
         <div className="max-w-7xl mx-auto flex justify-between items-center flex-wrap gap-2">
           <div className="flex items-center gap-4 text-[11px] sm:text-xs">
@@ -49,7 +60,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-2 group">
             <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center font-black text-white text-xl shadow-md shadow-red-600/30 group-hover:scale-105 transition-transform">
               PK
             </div>
@@ -61,22 +72,26 @@ export default function Navbar() {
                 Kitchen
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Links */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-2">
             {NAV_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.id}
                 href={link.href}
-                className="px-3.5 py-2 rounded-full text-sm font-semibold text-stone-200 hover:text-white hover:bg-stone-800 transition-all"
+                className={`px-3.5 py-2 rounded-full text-sm font-semibold transition-all ${
+                  isActive(link.href)
+                    ? "bg-red-600 text-white"
+                    : "text-stone-200 hover:text-white hover:bg-stone-800"
+                }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
-          {/* Desktop Right CTA */}
+          {/* Desktop CTAs */}
           <div className="hidden md:flex items-center gap-3">
             <a
               href={`https://wa.me/${CONTACT.whatsapp.replace("+", "")}?text=${encodeURIComponent(
@@ -89,15 +104,15 @@ export default function Navbar() {
               <MessageCircle className="w-4 h-4" />
               <span>WhatsApp Order</span>
             </a>
-            <a
-              href="#menu"
+            <Link
+              href="/menu"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-red-600 text-white text-xs font-bold uppercase tracking-wider hover:bg-red-700 active:scale-95 transition-all shadow-md shadow-red-900/30"
             >
               Order Online
-            </a>
+            </Link>
           </div>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Navigation Menu"
@@ -120,14 +135,18 @@ export default function Navbar() {
           >
             <nav className="flex flex-col gap-2">
               {NAV_LINKS.map((link) => (
-                <a
+                <Link
                   key={link.id}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-4 py-3 rounded-xl text-base font-semibold text-stone-200 hover:text-white hover:bg-stone-800 transition-colors"
+                  className={`px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
+                    isActive(link.href)
+                      ? "bg-red-600 text-white"
+                      : "text-stone-200 hover:text-white hover:bg-stone-800"
+                  }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </nav>
 

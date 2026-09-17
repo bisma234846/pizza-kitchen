@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { Star, Phone, ArrowRight, Flame, CheckCircle, MessageCircle } from "lucide-react";
@@ -106,7 +106,7 @@ export default function HeroSection() {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
               <a
-                href="#menu"
+                href="/menu"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-red-600 text-white font-extrabold text-sm uppercase tracking-wider hover:bg-red-700 active:scale-95 transition-all shadow-xl shadow-red-600/30"
               >
                 <span>Explore Full Menu</span>
@@ -177,7 +177,7 @@ export default function HeroSection() {
                 </div>
 
                 <a
-                  href="#specials"
+                  href="/specials"
                   className="mt-6 w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs uppercase tracking-wider transition-colors shadow-lg shadow-red-600/20"
                 >
                   View All Deals

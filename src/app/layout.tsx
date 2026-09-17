@@ -1,8 +1,14 @@
-﻿import type { Metadata, Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 
 export const metadata: Metadata = {
-  title: "The Pizza Kitchen | Best Pizza in Faisalabad",
+  title: {
+    default: "The Pizza Kitchen | Best Pizza in Faisalabad",
+    template: "%s | The Pizza Kitchen",
+  },
   description:
     "The Pizza Kitchen - Delicious oven-baked pizzas, wings, pastas & more. Dine-in, Takeaway & Delivery. 48W-101 Susan Road, Faisalabad. Call 041-111-192021",
   keywords: [
@@ -37,7 +43,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased min-h-screen flex flex-col bg-[#FFF8F0] selection:bg-red-600 selection:text-white">
+        <Navbar />
+        <main className="flex-grow">{children}</main>
+        <Footer />
+        <ScrollToTop />
+      </body>
     </html>
   );
 }

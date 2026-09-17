@@ -1,5 +1,6 @@
-﻿"use client";
+"use client";
 
+import Link from "next/link";
 import { Phone, Mail, MapPin, Clock, ChevronRight } from "lucide-react";
 import { RESTAURANT, CONTACT, NAV_LINKS, SOCIAL_LINKS } from "@/lib/data";
 
@@ -8,9 +9,9 @@ export default function Footer() {
     <footer className="bg-stone-950 text-stone-300 pt-16 pb-8 border-t border-stone-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
-          {/* Col 1: Brand Info */}
+          {/* Brand */}
           <div className="flex flex-col gap-4">
-            <a href="#home" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center font-black text-white text-xl">
                 PK
               </div>
@@ -22,11 +23,10 @@ export default function Footer() {
                   Kitchen
                 </span>
               </div>
-            </a>
+            </Link>
             <p className="text-stone-400 text-sm leading-relaxed mt-2">
               {RESTAURANT.fullTagline} Crafting hot, cheesy, flavor-packed pizzas and appetizers in Faisalabad.
             </p>
-            {/* Social Icons */}
             <div className="flex items-center gap-3 mt-2">
               {SOCIAL_LINKS.map((social) => (
                 <a
@@ -37,11 +37,7 @@ export default function Footer() {
                   aria-label={social.name}
                   className="w-9 h-9 rounded-full bg-stone-800 flex items-center justify-center text-stone-300 hover:bg-red-600 hover:text-white transition-all"
                 >
-                  <svg
-                    className="w-4 h-4 fill-current"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                     <path d={social.svgPath} />
                   </svg>
                 </a>
@@ -49,7 +45,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Quick Links */}
+          {/* Quick Links */}
           <div>
             <h3 className="text-white font-bold text-base uppercase tracking-wider mb-4 border-l-2 border-red-600 pl-3">
               Quick Links
@@ -57,19 +53,19 @@ export default function Footer() {
             <ul className="flex flex-col gap-2.5 text-sm">
               {NAV_LINKS.map((link) => (
                 <li key={link.id}>
-                  <a
+                  <Link
                     href={link.href}
                     className="inline-flex items-center gap-1.5 text-stone-400 hover:text-white hover:translate-x-1 transition-all"
                   >
                     <ChevronRight className="w-3.5 h-3.5 text-red-500" />
                     <span>{link.label}</span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 3: Contact Info */}
+          {/* Contact */}
           <div>
             <h3 className="text-white font-bold text-base uppercase tracking-wider mb-4 border-l-2 border-red-600 pl-3">
               Get In Touch
@@ -99,7 +95,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 4: Operating Hours */}
+          {/* Hours */}
           <div>
             <h3 className="text-white font-bold text-base uppercase tracking-wider mb-4 border-l-2 border-red-600 pl-3">
               Working Hours
@@ -117,7 +113,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="pt-8 border-t border-stone-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
           <p>© {new Date().getFullYear()} {RESTAURANT.name}. All Rights Reserved.</p>
           <div className="flex items-center gap-4">
