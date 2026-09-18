@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { Flame } from "lucide-react";
@@ -30,6 +30,11 @@ export default function MenuCard({ item, index = 0 }: MenuCardProps) {
     >
       {/* Badges */}
       <div className="absolute top-3 right-3 flex gap-1.5">
+        {item.inStock === false && (
+          <span className="px-2 py-0.5 rounded-full bg-stone-800 text-stone-300 text-[10px] font-bold uppercase tracking-wide">
+            Out of Stock
+          </span>
+        )}
         {item.isPopular && (
           <span className="px-2 py-0.5 rounded-full bg-amber-500 text-white text-[10px] font-bold uppercase tracking-wide">
             Popular
@@ -67,16 +72,22 @@ export default function MenuCard({ item, index = 0 }: MenuCardProps) {
             </p>
           )}
         </div>
-        <a
-          href={`https://wa.me/923222192021?text=${encodeURIComponent(
-            `Hi! I'd like to order: ${item.name}`
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-600 text-white text-xs font-semibold hover:bg-red-700 active:scale-95 transition-all"
-        >
-          Order
-        </a>
+        {item.inStock !== false ? (
+          <a
+            href={`https://wa.me/923222192021?text=${encodeURIComponent(
+              `Hi! I'd like to order: ${item.name}`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-600 text-white text-xs font-semibold hover:bg-red-700 active:scale-95 transition-all"
+          >
+            Order
+          </a>
+        ) : (
+          <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-stone-100 text-stone-400 text-xs font-semibold cursor-not-allowed">
+            Unavailable
+          </span>
+        )}
       </div>
     </motion.div>
   );

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -6,12 +6,18 @@ import { Search, Flame, Utensils, Coffee, Star } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
 import MenuCard from "@/components/ui/MenuCard";
-import { MENU_CATEGORIES } from "@/lib/data";
+import { useMenu } from "@/context/MenuContext";
 import type { MenuCategory, MenuItem } from "@/types";
 
 export default function MenuSection() {
+  const { categories } = useMenu();
   const [activeTab, setActiveTab] = useState<string>("pizza");
   const [searchQuery, setSearchQuery] = useState<string>("");
+
+  // Ensure active tab points to a valid category ID if categories are reordered/deleted
+  const effectiveActiveTab = categories.some((c) => c.id === activeTab)
+    ? activeTab
+    : categories[0]?.id || "pizza";
 
   // Category Icon Resolver
   const getCategoryIcon = (iconName: string) => {
@@ -26,6 +32,7 @@ export default function MenuSection() {
       case "Coffee":
         return <Coffee className="w-4 h-4 text-amber-600" />;
       case "IceCreamCone":
+      case "IceCream":
         return <span className="text-lg">🍨</span>;
       default:
         return <Star className="w-4 h-4 text-amber-500" />;
@@ -33,8 +40,8 @@ export default function MenuSection() {
   };
 
   const currentCategory = useMemo(() => {
-    return MENU_CATEGORIES.find((cat) => cat.id === activeTab) || MENU_CATEGORIES[0];
-  }, [activeTab]);
+    return categories.find((cat) => cat.id === effectiveActiveTab) || categories[0];
+  }, [categories, effectiveActiveTab]);
 
   // Filter items if user searches
   const searchResults = useMemo(() => {
@@ -42,7 +49,7 @@ export default function MenuSection() {
     const query = searchQuery.toLowerCase().trim();
 
     const matchedItems: { categoryName: string; item: MenuItem }[] = [];
-    MENU_CATEGORIES.forEach((cat) => {
+    categories.forEach((cat) => {
       cat.subCategories.forEach((sub) => {
         sub.items.forEach((item) => {
           if (
@@ -55,7 +62,7 @@ export default function MenuSection() {
       });
     });
     return matchedItems;
-  }, [searchQuery]);
+  }, [searchQuery, categories]);
 
   return (
     <section id="menu" className="py-20 bg-white relative">
@@ -91,8 +98,8 @@ export default function MenuSection() {
         {/* Category Tabs (Horizontal Scrollable on Mobile) */}
         {!searchQuery && (
           <AnimatedSection className="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-4 mb-12 no-scrollbar">
-            {MENU_CATEGORIES.map((category) => {
-              const isActive = activeTab === category.id;
+            {categories.map((category) => {
+              const isActive = effectiveActiveTab === category.id;
               return (
                 <button
                   key={category.id}

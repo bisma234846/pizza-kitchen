@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import ScrollToTop from "@/components/ui/ScrollToTop";
+import { MenuProvider } from "@/context/MenuContext";
 
 export const metadata: Metadata = {
   title: {
@@ -43,11 +41,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased min-h-screen flex flex-col bg-[#FFF8F0] selection:bg-red-600 selection:text-white">
-        <Navbar />
-        <main className="flex-grow">{children}</main>
-        <Footer />
-        <ScrollToTop />
+      <body className="antialiased min-h-screen selection:bg-red-600 selection:text-white">
+        <MenuProvider>{children}</MenuProvider>
       </body>
     </html>
   );

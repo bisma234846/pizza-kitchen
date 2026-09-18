@@ -1,8 +1,13 @@
-﻿// ============================================
+// ============================================
 // The Pizza Kitchen - TypeScript Types
 // ============================================
 
 export type Currency = "PKR";
+
+export interface MenuItemVariant {
+  size: string;
+  price: number;
+}
 
 export interface MenuItem {
   id: string;
@@ -13,6 +18,10 @@ export interface MenuItem {
   image?: string;
   isPopular?: boolean;
   isSpicy?: boolean;
+  inStock?: boolean;
+  categoryId?: string;
+  subCategoryId?: string;
+  variants?: MenuItemVariant[];
 }
 
 export interface MenuSubCategory {
@@ -96,3 +105,6 @@ export interface DeviceCapabilities {
   enableParallax: boolean;
   enableVideo: boolean;
 }
+
+export * from "./orders";
+export * from "./admin";
