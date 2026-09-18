@@ -134,7 +134,7 @@ export const ADMIN_NAV_SECTIONS: AdminNavSection[] = [
       {
         id: "follow-up-wa",
         title: "Follow-up WA",
-        href: "/admin/follow-up-wa",
+        href: "/admin/followup",
         icon: "MessageSquare",
         description: "WhatsApp post-meal feedback & re-order messages",
       },
