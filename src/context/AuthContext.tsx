@@ -44,9 +44,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = useCallback(
     async ({ phone, password, role }: LoginCredentials): Promise<{ success: boolean; error?: string }> => {
-      // Simulate slight network latency
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
       const cleanPhone = phone.replace(/[\s-]/g, "");
 
       // Basic validation

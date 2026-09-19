@@ -14,7 +14,7 @@ export default function AdminAuthGuard({ children }: AdminAuthGuardProps) {
   const router = useRouter();
   const { isAuthenticated, isLoading } = useAuth();
 
-  const isLoginPage = pathname === "/admin/login";
+  const isLoginPage = pathname ? pathname.startsWith("/admin/login") : false;
 
   useEffect(() => {
     if (isLoading) return;
@@ -22,7 +22,7 @@ export default function AdminAuthGuard({ children }: AdminAuthGuardProps) {
     if (!isAuthenticated && !isLoginPage) {
       router.replace("/admin/login");
     } else if (isAuthenticated && isLoginPage) {
-      router.replace("/admin/dashboard");
+      router.replace("/admin");
     }
   }, [isAuthenticated, isLoading, isLoginPage, router]);
 

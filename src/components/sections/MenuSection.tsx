@@ -13,7 +13,7 @@ import { useMenu } from "@/context/MenuContext";
 import type { MenuCategory, MenuItem } from "@/types";
 
 function MenuContent() {
-  const { categories, isHydrated } = useMenu();
+  const { categories } = useMenu();
   const searchParams = useSearchParams();
   const catParam = searchParams.get("cat");
 
@@ -131,10 +131,7 @@ function MenuContent() {
           </AnimatedSection>
         )}
 
-        {/* Loading state before hydration */}
-        {!isHydrated ? (
-          <CustomerLoadingState count={6} />
-        ) : searchResults !== null ? (
+        {searchResults !== null ? (
           /* Search Results Display */
           <div>
             <h3 className="text-base sm:text-lg font-black text-stone-900 mb-6">

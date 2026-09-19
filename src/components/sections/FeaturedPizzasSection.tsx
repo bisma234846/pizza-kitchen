@@ -6,11 +6,10 @@ import { ArrowRight, Flame, Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
 import MenuCard from "@/components/ui/MenuCard";
-import CustomerLoadingState from "@/components/ui/CustomerLoadingState";
 import { useMenu } from "@/context/MenuContext";
 
 export default function FeaturedPizzasSection() {
-  const { allProducts, isHydrated } = useMenu();
+  const { allProducts } = useMenu();
 
   // Pick top popular pizzas from menu
   const featuredPizzas = useMemo(() => {
@@ -52,15 +51,11 @@ export default function FeaturedPizzasSection() {
           </Link>
         </div>
 
-        {!isHydrated ? (
-          <CustomerLoadingState count={6} />
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredPizzas.map((item, idx) => (
-              <MenuCard key={item.id} item={item} index={idx} />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featuredPizzas.map((item, idx) => (
+            <MenuCard key={item.id} item={item} index={idx} />
+          ))}
+        </div>
       </div>
     </section>
   );

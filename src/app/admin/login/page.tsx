@@ -30,10 +30,10 @@ export default function AdminLoginPage() {
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // If already authenticated, redirect to /admin/dashboard
+  // If already authenticated, redirect to /admin
   useEffect(() => {
     if (!isLoading && isAuthenticated) {
-      router.replace("/admin/dashboard");
+      router.replace("/admin");
     }
   }, [isAuthenticated, isLoading, router]);
 
@@ -57,7 +57,7 @@ export default function AdminLoginPage() {
     try {
       const result = await login({ phone, password, role });
       if (result.success) {
-        router.push("/admin/dashboard");
+        router.push("/admin");
       } else {
         setErrorMessage(result.error || "Login failed. Please verify credentials.");
       }
