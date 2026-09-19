@@ -1,7 +1,5 @@
-"use client";
-
-import AdminDashboardPage from "../page";
+import PizzaDashboard from "@/components/admin/pizza-dashboard";
 
 export default function DashboardRoute() {
-  return <AdminDashboardPage />;
+  return <PizzaDashboard page="Dashboard" />;
 }
