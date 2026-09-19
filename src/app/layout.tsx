@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { MenuProvider } from "@/context/MenuContext";
+import { CustomerCartProvider } from "@/context/CustomerCartContext";
 
 export const metadata: Metadata = {
   title: {
@@ -42,7 +43,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased min-h-screen selection:bg-red-600 selection:text-white">
-        <MenuProvider>{children}</MenuProvider>
+        <MenuProvider>
+          <CustomerCartProvider>{children}</CustomerCartProvider>
+        </MenuProvider>
       </body>
     </html>
   );

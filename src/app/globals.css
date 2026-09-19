@@ -50,15 +50,33 @@ img, video {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FFF8F0;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #DC2626;
-  border-radius: 4px;
+  background: rgba(150, 150, 150, 0.3);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B91C1C;
+  background: rgba(220, 38, 38, 0.7);
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  header, nav, footer, button, .print\:hidden {
+    display: none !important;
+  }
+  #printable-receipt {
+    box-shadow: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 }

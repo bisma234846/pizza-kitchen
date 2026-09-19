@@ -125,6 +125,20 @@ export default function POSPage() {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[calc(100vh-8.5rem)] min-h-[600px]">
       {/* LEFT: Category Tabs & Menu Grid (8 cols) */}
       <div className="lg:col-span-7 xl:col-span-8 flex flex-col gap-4 min-h-0">
+        {/* Quick Launch Dedicated POS Terminal Banner */}
+        <div className="p-3 rounded-2xl bg-stone-900 border border-red-500/30 flex items-center justify-between gap-2 shrink-0 shadow-lg">
+          <div className="flex items-center gap-2 text-xs">
+            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+            <span className="font-extrabold text-white">Touch-Optimized Dedicated POS Terminal Available</span>
+          </div>
+          <a
+            href="/pos"
+            className="px-3 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase tracking-wider transition-colors shadow-sm"
+          >
+            Open /pos Terminal →
+          </a>
+        </div>
+
         {/* Success Alert Banner */}
         {successMessage && (
           <div className="p-3 rounded-2xl bg-green-600 text-white font-bold text-xs flex items-center gap-2 shadow-lg animate-in fade-in zoom-in-95">

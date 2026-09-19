@@ -16,6 +16,12 @@ export default function KitchenKDSPage() {
         </div>
 
         <div className="flex items-center gap-3">
+          <a
+            href="/pos/kitchen"
+            className="px-3 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase tracking-wider transition-colors shadow-sm"
+          >
+            Open Fullscreen KDS →
+          </a>
           <span className="flex items-center gap-1.5 text-xs text-green-400 font-bold bg-green-500/10 px-3 py-1.5 rounded-full border border-green-500/20">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             {kitchenOrders.length} Station Tickets Active
