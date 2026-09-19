@@ -31,9 +31,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Hydrate user session from localStorage
   useEffect(() => {
     try {
-      const savedUser = localStorage.getItem(AUTH_STORAGE_KEY);
-      if (savedUser) {
-        setUser(JSON.parse(savedUser));
+      if (typeof window !== "undefined") {
+        const savedUser = localStorage.getItem(AUTH_STORAGE_KEY);
+        if (savedUser) {
+          const parsed = JSON.parse(savedUser);
+          if (parsed && parsed.id) {
+            setUser(parsed);
+          }
+        }
       }
     } catch (e) {
       console.error("Failed to load auth session:", e);

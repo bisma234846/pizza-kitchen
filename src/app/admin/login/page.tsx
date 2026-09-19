@@ -155,8 +155,36 @@ export default function AdminLoginPage() {
               )}
             </AnimatePresence>
 
+            {/* 1-Tap Quick Admin Access Card */}
+            <div className="p-3.5 rounded-2xl bg-stone-950/80 border border-stone-800 flex items-center justify-between gap-3">
+              <div className="text-left min-w-0">
+                <span className="text-xs font-black text-white block truncate">
+                  {role === "admin" ? "Muhammad Hamza (Super Admin)" : "Bilal Ahmed (Staff / Kitchen)"}
+                </span>
+                <span className="text-[10px] text-stone-400 font-mono block truncate">
+                  {phone} • {password}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setSubmitting(true);
+                  login({ phone, password, role }).then((res) => {
+                    setSubmitting(false);
+                    if (res.success) {
+                      router.push("/admin");
+                    }
+                  });
+                }}
+                disabled={submitting}
+                className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 active:scale-95 text-white font-black text-[11px] uppercase tracking-wider transition-all shadow-md shadow-red-600/30 shrink-0 cursor-pointer"
+              >
+                1-Tap Access
+              </button>
+            </div>
+
             {/* FORM */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} autoComplete="off" className="space-y-4">
               {/* Phone Number Field */}
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-stone-300 flex items-center justify-between">
@@ -170,6 +198,7 @@ export default function AdminLoginPage() {
                   <input
                     type="tel"
                     required
+                    autoComplete="off"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="0300-1234567"
@@ -191,6 +220,7 @@ export default function AdminLoginPage() {
                   <input
                     type={showPassword ? "text" : "password"}
                     required
+                    autoComplete="new-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter management password"
