@@ -133,8 +133,9 @@ Route (app)
   - `origin/admin-dev` — Synchronized (`https://github.com/bisma234846/pizza-kitchen/tree/admin-dev`)
   - `origin/main` — Synchronized (`https://github.com/bisma234846/pizza-kitchen/tree/main`)
 - **Vercel Deployment Pipeline:**
-  - With GitHub repository synchronization configured on `bisma234846/pizza-kitchen`, pushing to `main` triggers automated Vercel Production deployment.
-  - Target URL format: Connected Vercel Production Domain (e.g. `pizza-kitchen-*.vercel.app`).
+  - With GitHub repository synchronization configured on `bisma234846/pizza-kitchen`, pushing commit `953d79e` to `main` triggered the production deployment.
+  - **Live Production URL:** [`https://pizza-kitchen-eight.vercel.app`](https://pizza-kitchen-eight.vercel.app)
+  - **Live Deployment Status:** ✅ Active & Verified (HTTP 200 across all routes)
 
 ---
 
