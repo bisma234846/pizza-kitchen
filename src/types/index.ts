@@ -16,6 +16,7 @@ export interface MenuItem {
   price: number;
   priceNote?: string;
   image?: string;
+  tag?: string;
   isPopular?: boolean;
   isSpicy?: boolean;
   inStock?: boolean;

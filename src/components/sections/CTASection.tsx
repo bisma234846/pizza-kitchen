@@ -7,33 +7,22 @@ import { CONTACT } from "@/lib/data";
 
 export default function CTASection() {
   return (
-    <section className="py-14 sm:py-18 bg-stone-950 relative overflow-hidden text-white">
-      {/* Background Image Overlay */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1920&auto=format&fit=crop')`,
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-red-950/90 via-stone-950/90 to-stone-950/90" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="rounded-3xl bg-gradient-to-r from-red-600 via-red-600 to-amber-600 p-8 sm:p-12 lg:p-14 shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
+    <section className="bg-[#fffaf0] py-14 sm:py-18 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-5 lg:px-8">
+        <div className="rounded-[2rem] bg-[#153b2e] p-8 sm:p-12 lg:p-14 shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
           {/* Text Content */}
           <AnimatedSection className="max-w-2xl text-center lg:text-left flex flex-col gap-3.5">
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-stone-950/30 backdrop-blur-xs text-stone-100 text-xs font-black uppercase tracking-wider self-center lg:self-start">
-              <Flame className="w-3.5 h-3.5 text-amber-300" />
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 text-[#ffd34e] text-xs font-black uppercase tracking-wider self-center lg:self-start">
+              <Flame className="w-3.5 h-3.5 text-[#ffd34e]" />
               <span>Satisfy Your Hunger Now</span>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              HUNGRY? <br className="hidden sm:block" />
-              YOUR PIZZA IS 30 MINUTES AWAY!
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#fff9e7] leading-tight font-serif">
+              Hungry? <br className="hidden sm:block" />
+              Your pizza is 30 minutes away!
             </h2>
 
-            <p className="text-white/90 text-xs sm:text-sm md:text-base leading-relaxed">
+            <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-lg">
               Order direct for fast delivery across Faisalabad. Hand-tossed, extra cheesy, and delivered piping hot straight to your door.
             </p>
           </AnimatedSection>
@@ -46,18 +35,18 @@ export default function CTASection() {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-stone-950 text-white font-black text-xs uppercase tracking-wider hover:bg-stone-900 active:scale-95 transition-all shadow-xl min-h-[48px]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#e74728] text-white font-black text-sm uppercase tracking-wider hover:bg-[#ffd34e] hover:text-[#153b2e] active:scale-95 transition-all shadow-xl min-h-[48px]"
             >
-              <MessageCircle className="w-4 h-4 text-green-400" />
+              <MessageCircle className="w-4 h-4" />
               <span>WhatsApp Order</span>
-              <ArrowRight className="w-4 h-4 text-amber-400" />
+              <ArrowRight className="w-4 h-4" />
             </a>
 
             <a
               href={`tel:${CONTACT.phone1.replace(/\s+/g, "")}`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/20 active:scale-95 transition-all min-h-[48px]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white/10 border border-white/20 text-[#fff9e7] font-bold text-sm uppercase tracking-wider hover:bg-white/20 active:scale-95 transition-all min-h-[48px]"
             >
-              <Phone className="w-4 h-4 text-amber-300" />
+              <Phone className="w-4 h-4 text-[#ffd34e]" />
               <span>Call {CONTACT.phone1}</span>
             </a>
           </AnimatedSection>

@@ -1,167 +1,114 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Star, ArrowRight, Flame, CheckCircle, MessageCircle, ShoppingBag } from "lucide-react";
+import { Star, ArrowRight, Flame, Check } from "lucide-react";
 import { useDevicePerformance } from "@/hooks/useDevicePerformance";
-import { useCustomerCart } from "@/context/CustomerCartContext";
-import { RESTAURANT, CONTACT } from "@/lib/data";
+import { RESTAURANT } from "@/lib/data";
 
 export default function HeroSection() {
   const caps = useDevicePerformance();
-  const { openCart } = useCustomerCart();
 
   return (
-    <section
-      id="home"
-      className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center bg-stone-950 overflow-hidden py-14 sm:py-18 lg:py-24 text-white"
-    >
-      {/* Background Image with Dark Tint Overlay */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25 transform scale-105"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1920&auto=format&fit=crop')`,
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/85 to-stone-950/70" />
-      </div>
-
-      {/* Main Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+    <>
+      {/* Hero Section */}
+      <section
+        id="home"
+        className="bg-[#fffaf0] overflow-hidden"
+      >
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-12 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:pb-28 lg:pt-20">
           {/* Left Text Column */}
           <motion.div
             initial={caps.prefersReducedMotion ? false : { opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-7 flex flex-col gap-5 text-center lg:text-left"
           >
-            {/* Top Rating & Badges */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-red-600/20 border border-red-500/40 text-red-400 text-xs font-black uppercase tracking-wider">
-                <Flame className="w-3.5 h-3.5 text-red-500" />
-                Susan Road, Faisalabad
-              </span>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-900 border border-stone-800 text-stone-300 text-xs font-semibold">
-                <div className="flex text-amber-400">
-                  <Star className="w-3.5 h-3.5 fill-current" />
-                </div>
-                <span className="font-extrabold text-white">{RESTAURANT.rating}</span>
-                <span className="text-stone-400">({RESTAURANT.reviewCount}+ Google Reviews)</span>
-              </div>
+            {/* Top Badge */}
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#f9e9bb] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#a74721]">
+              <Flame className="size-4" /> Fired fresh in Faisalabad
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-3.5xl sm:text-5xl md:text-6xl xl:text-7xl font-black tracking-tight text-white leading-[1.08]">
-              FLAVOR FIRST. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-amber-400 to-amber-300">
-                ALWAYS.
-              </span>
+            <h1 className="max-w-xl font-serif text-6xl font-black leading-[.92] tracking-[-0.05em] text-[#153b2e] md:text-8xl">
+              Good food.<br />
+              <span className="text-[#e74728]">Good mood.</span>
             </h1>
 
             {/* Subtitle */}
-            <p className="max-w-xl mx-auto lg:mx-0 text-stone-300 text-sm sm:text-base md:text-lg leading-relaxed">
-              Faisalabad's favorite pizza destination. Hand-kneaded dough, rich mozzarella blends, oven-baked hot wings, and creamy pastas crafted to solve every craving.
+            <p className="mt-7 max-w-md text-lg leading-8 text-[#61766b]">
+              Hand-stretched, stone-baked pizza made with local love and a little Italian soul. Your next favourite slice is waiting.
             </p>
 
-            {/* Services Available */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 text-xs font-bold text-stone-300 my-1">
-              {RESTAURANT.services.map((service) => (
-                <span key={service} className="inline-flex items-center gap-1.5">
-                  <CheckCircle className="w-3.5 h-3.5 text-green-500" />
-                  {service}
-                </span>
-              ))}
-              <span className="inline-flex items-center gap-1.5 text-amber-400">
-                ⚡ 30-Min Delivery
-              </span>
+            {/* Action Buttons */}
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link
+                href="/menu"
+                className="inline-flex items-center gap-3 rounded-full bg-[#e74728] px-6 py-4 text-sm font-black text-white shadow-[0_12px_25px_rgba(231,71,40,.2)] transition hover:-translate-y-0.5"
+              >
+                Order your pizza <ArrowRight className="size-4" />
+              </Link>
+              <button
+                onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+                className="rounded-full border border-[#cfdacc] px-6 py-4 text-sm font-black text-[#153b2e]"
+              >
+                Our story
+              </button>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
-              {/* Primary Order Now Button */}
-              <Link
-                href="/menu"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-red-600 hover:bg-red-700 active:scale-95 text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-all shadow-lg shadow-red-600/30 min-h-[48px]"
-              >
-                <span>Order Now</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-
-              {/* Browse Menu Secondary Button */}
-              <Link
-                href="/menu"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-stone-900 border border-stone-700 hover:border-stone-500 hover:bg-stone-800 text-stone-200 font-bold text-xs sm:text-sm uppercase tracking-wider transition-all min-h-[48px]"
-              >
-                <ShoppingBag className="w-4 h-4 text-amber-400" />
-                <span>Browse Menu</span>
-              </Link>
-
-              {/* WhatsApp Quick Order */}
-              <a
-                href={`https://wa.me/${CONTACT.whatsapp.replace("+", "")}?text=${encodeURIComponent(
-                  "Hi! I want to order from The Pizza Kitchen."
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-green-600/90 hover:bg-green-600 text-white font-bold text-xs sm:text-sm uppercase tracking-wider active:scale-95 transition-all shadow-md min-h-[48px]"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>WhatsApp</span>
-              </a>
+            {/* Trust Indicators */}
+            <div className="mt-12 flex items-center gap-6 text-sm text-[#61766b]">
+              <span className="flex items-center gap-2">
+                <Star className="size-4 fill-[#f1a32b] text-[#f1a32b]" /> {RESTAURANT.rating} rating
+              </span>
+              <span className="h-5 w-px bg-[#d9d5c6]" />
+              <span>30 min delivery</span>
             </div>
           </motion.div>
 
-          {/* Right Hero Visual Card */}
+          {/* Right Hero Visual */}
           <motion.div
             initial={caps.prefersReducedMotion ? false : { opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="lg:col-span-5 flex justify-center"
+            className="relative"
           >
-            <div className="relative w-full max-w-md">
-              <div className="relative rounded-3xl overflow-hidden bg-stone-900 border border-stone-800 shadow-2xl p-6 sm:p-8 text-white">
-                <div className="inline-block px-3 py-1 rounded-full bg-amber-500 text-stone-950 font-black text-xs uppercase tracking-wider mb-4">
-                  🔥 Special Offer
+            <div className="absolute -inset-4 rounded-[2.5rem] bg-[#f6bc42]/20 blur-2xl" />
+            <div className="relative overflow-hidden rounded-[2rem] rounded-br-[7rem] shadow-[0_28px_60px_rgba(22,59,46,.18)]">
+              <Image
+                src="/pizza-hero.png"
+                alt="Fresh bubbling pepperoni pizza"
+                width={800}
+                height={600}
+                className="aspect-[4/3] w-full object-cover"
+                priority
+              />
+              <div className="absolute bottom-5 left-5 flex items-center gap-3 rounded-2xl bg-[#fffaf0]/95 px-4 py-3 shadow-lg">
+                <span className="flex size-10 items-center justify-center rounded-full bg-[#ffd34e] text-xl">✦</span>
+                <div>
+                  <div className="text-xs font-bold text-[#70847a]">Made with love</div>
+                  <div className="font-serif text-base font-black text-[#153b2e]">Since 2018, Faisalabad</div>
                 </div>
-
-                <h3 className="text-2xl sm:text-3xl font-black mb-2 leading-tight">
-                  EID & FAMILY FEAST <br />
-                  <span className="text-red-500">20% OFF</span> ENTIRE MENU
-                </h3>
-
-                <p className="text-stone-400 text-xs sm:text-sm mb-6 leading-relaxed">
-                  Dine in, Takeaway, or Direct 30-Min Delivery right across Faisalabad.
-                </p>
-
-                <div className="space-y-3 border-t border-stone-800 pt-4 text-xs text-stone-300">
-                  <div className="flex justify-between items-center">
-                    <span className="font-semibold text-stone-400">Location</span>
-                    <span className="font-bold text-white">Susan Road, Faisalabad</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-semibold text-stone-400">Operating Hours</span>
-                    <span className="font-bold text-amber-400">12:00 PM – 2:00 AM</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-semibold text-stone-400">Delivery Hotline</span>
-                    <span className="font-bold text-red-400">{CONTACT.phone1}</span>
-                  </div>
-                </div>
-
-                <Link
-                  href="/specials"
-                  className="mt-6 w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase tracking-wider transition-colors shadow-md shadow-red-600/20"
-                >
-                  <span>Explore Feast Deals</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
               </div>
             </div>
           </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Confidence Strip */}
+      <section className="bg-[#153b2e] py-5 text-[#fff9e7]">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-12 gap-y-3 px-5 text-center text-sm font-bold sm:justify-between lg:px-8">
+          <span className="flex items-center gap-2">
+            <Check className="size-4 text-[#ffd34e]" /> 100% fresh dough
+          </span>
+          <span className="flex items-center gap-2">
+            <Check className="size-4 text-[#ffd34e]" /> No frozen toppings
+          </span>
+          <span className="flex items-center gap-2">
+            <Check className="size-4 text-[#ffd34e]" /> Free delivery over Rs. 2,000
+          </span>
+        </div>
+      </section>
+    </>
   );
 }

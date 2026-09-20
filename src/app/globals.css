@@ -9,18 +9,27 @@
   --color-dark: #1C1917;
 }
 
+* { box-sizing: border-box; }
+
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
+  margin: 0;
   background-color: #FFF8F0;
   color: #1C1917;
   overflow-x: hidden;
+  font-family: Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+button, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+
+.font-serif { font-family: Georgia, 'Times New Roman', serif; }
 
 img, video {
   max-width: 100%;
@@ -34,8 +43,8 @@ img, video {
 }
 
 ::selection {
-  background-color: #DC2626;
-  color: white;
+  background: #ffd34e;
+  color: #153b2e;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -43,9 +52,10 @@ img, video {
     scroll-behavior: auto;
   }
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }
 
@@ -62,6 +72,15 @@ img, video {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(220, 38, 38, 0.7);
+}
+
+/* Fade-up animation for sections */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+main section {
+  animation: fade-up 0.6s ease-out both;
 }
 
 @media print {

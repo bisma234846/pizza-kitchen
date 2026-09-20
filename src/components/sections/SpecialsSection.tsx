@@ -2,23 +2,33 @@
 
 import React from "react";
 import Link from "next/link";
-import { Flame, ArrowRight, MessageCircle, Sparkles, Check } from "lucide-react";
+import { ArrowRight, MessageCircle, Plus, Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
-import SectionHeading from "@/components/ui/SectionHeading";
 import { SPECIAL_DEALS, CONTACT, formatPrice } from "@/lib/data";
 
 export default function SpecialsSection() {
   return (
-    <section id="specials" className="py-16 sm:py-20 bg-stone-950 text-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeading
-          badge="Limited Time Offers"
-          title="Exclusive Deals & Feast Bundles"
-          subtitle="Save big with our combination feast bundles, festival specials, and family pizza deals across Faisalabad."
-          light
-        />
+    <section id="specials" className="bg-[#f7edcf] px-5 py-20 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        {/* Section Header */}
+        <div className="flex flex-wrap items-end justify-between gap-5">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#e74728]">Hot from the kitchen</p>
+            <h2 className="mt-3 font-serif text-5xl font-black text-[#153b2e]">Featured deals</h2>
+            <p className="mt-3 max-w-xl text-[#61766b]">
+              Big flavour, better value. Grab a crowd-pleasing combo while it&apos;s hot.
+            </p>
+          </div>
+          <Link
+            href="/specials"
+            className="inline-flex items-center gap-2 text-sm font-black text-[#e74728]"
+          >
+            See all deals <ArrowRight className="size-4" />
+          </Link>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Deal Cards Grid */}
+        <div className="mt-9 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {SPECIAL_DEALS.map((deal, idx) => {
             const savings =
               deal.price && deal.oldPrice ? deal.oldPrice - deal.price : null;
@@ -27,72 +37,73 @@ export default function SpecialsSection() {
               <AnimatedSection
                 key={deal.id}
                 delay={idx * 0.08}
-                className="group relative flex flex-col justify-between rounded-3xl bg-stone-900 border border-stone-800 p-6 hover:border-red-500/60 transition-all duration-300 shadow-xl"
+                className="group overflow-hidden rounded-[1.5rem] border border-[#eadfca] bg-white shadow-[0_10px_30px_rgba(38,60,45,.06)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_35px_rgba(38,60,45,.1)]"
               >
-                {/* Badge */}
-                {deal.badge && (
-                  <div className="absolute top-4 right-4">
-                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-red-600 to-amber-500 text-white text-[11px] font-black uppercase tracking-wider shadow-md">
-                      <Flame className="w-3 h-3" />
+                {/* Food Image Banner */}
+                <div className="relative overflow-hidden bg-[#f7edcf]">
+                  <img
+                    src={deal.image}
+                    alt={deal.title}
+                    className="aspect-[1.25] w-full object-cover transition duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  {deal.badge && (
+                    <span className="absolute left-4 top-4 rounded-full bg-[#ffd34e] px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#153b2e] shadow-xs">
                       {deal.badge}
                     </span>
-                  </div>
-                )}
-
-                <div>
-                  <span className="text-xs font-bold text-amber-400 uppercase tracking-widest block mb-1">
-                    {deal.subtitle || "The Pizza Kitchen"}
-                  </span>
-
-                  <h3 className="text-xl font-black text-white group-hover:text-red-400 transition-colors mb-3 leading-snug">
-                    {deal.title}
-                  </h3>
-
-                  <p className="text-stone-400 text-xs sm:text-sm leading-relaxed mb-5">
-                    {deal.description}
-                  </p>
-
-                  {/* Savings pill if calculated */}
-                  {savings && savings > 0 && (
-                    <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-green-950/60 border border-green-800/50 text-green-400 text-[11px] font-extrabold mb-4">
-                      <Sparkles className="w-3 h-3" />
-                      <span>Save {formatPrice(savings)}</span>
-                    </div>
                   )}
                 </div>
 
-                <div className="pt-4 border-t border-stone-800 flex flex-col gap-3">
-                  {/* Price Section */}
-                  {deal.price ? (
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-2xl font-black text-white">
-                        {formatPrice(deal.price)}
-                      </span>
-                      {deal.oldPrice && (
-                        <span className="text-xs text-stone-500 line-through font-medium">
-                          {formatPrice(deal.oldPrice)}
-                        </span>
-                      )}
+                <div className="p-5 flex flex-col flex-1 justify-between">
+                  <div>
+                    {/* Title */}
+                    <h3 className="font-serif text-2xl font-black text-[#153b2e]">
+                      {deal.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="mt-2 min-h-12 text-sm leading-6 text-[#74867b]">
+                      {deal.description}
+                    </p>
+                  </div>
+
+                  {/* Savings pill */}
+                  {savings && savings > 0 && (
+                    <div className="mt-3 inline-flex items-center gap-1 rounded-full bg-[#edf4df] px-3 py-1 text-xs font-black text-[#4e853e]">
+                      <Sparkles className="size-3" />
+                      Save {formatPrice(savings)}
                     </div>
-                  ) : (
-                    <span className="text-sm font-bold text-amber-400">
-                      Special Discount
-                    </span>
                   )}
 
-                  {/* WhatsApp Action Button */}
-                  <a
-                    href={`https://wa.me/${CONTACT.whatsapp.replace("+", "")}?text=${encodeURIComponent(
-                      `Hi! I want to order the deal: ${deal.title} (${deal.price ? formatPrice(deal.price) : "Special"})`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-red-600 hover:bg-red-700 active:scale-95 text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-md shadow-red-600/20 min-h-[42px]"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    <span>{deal.ctaText || "Order Deal"}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
+                  {/* Price + Action */}
+                  <div className="mt-4 flex items-center justify-between gap-3">
+                    {deal.price ? (
+                      <div>
+                        <span className="text-xl font-black text-[#e74728]">
+                          {formatPrice(deal.price)}
+                        </span>
+                        {deal.oldPrice && (
+                          <span className="ml-2 text-xs text-[#9aa89f] line-through">
+                            {formatPrice(deal.oldPrice)}
+                          </span>
+                        )}
+                      </div>
+                    ) : (
+                      <span className="text-sm font-bold text-[#e74728]">
+                        Special Discount
+                      </span>
+                    )}
+                    <a
+                      href={`https://wa.me/${CONTACT.whatsapp.replace("+", "")}?text=${encodeURIComponent(
+                        `Hi! I want to order the deal: ${deal.title} (${deal.price ? formatPrice(deal.price) : "Special"})`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl bg-[#153b2e] px-4 py-3 text-xs font-black text-white transition hover:bg-[#e74728]"
+                    >
+                      <Plus className="size-4" /> {deal.ctaText || "Order"}
+                    </a>
+                  </div>
                 </div>
               </AnimatedSection>
             );

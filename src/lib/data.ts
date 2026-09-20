@@ -42,11 +42,8 @@ export const CONTACT: ContactInfo = {
 // ============================================
 export const NAV_LINKS: NavLink[] = [
   { id: "home", label: "Home", href: "/" },
-  { id: "about", label: "About", href: "/about" },
   { id: "menu", label: "Menu", href: "/menu" },
   { id: "specials", label: "Specials", href: "/specials" },
-  { id: "reviews", label: "Reviews", href: "/reviews" },
-  { id: "contact", label: "Contact", href: "/contact" },
 ];
 
 // ============================================
@@ -489,7 +486,7 @@ export const SPECIAL_DEALS: SpecialDeal[] = [
     subtitle: "With A Treat!",
     description: "Enjoy 20% OFF on the Entire Menu. Dine in, take away, or get it delivered.",
     badge: "20% OFF",
-    image: "/images/hero/hero-pizza.webp",
+    image: "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=800&q=80",
     ctaText: "Claim Offer",
   },
   {
@@ -498,7 +495,7 @@ export const SPECIAL_DEALS: SpecialDeal[] = [
     subtitle: "8 PM – 2 AM",
     description: "Unlimited Flavor for Unlimited Blessings. Deals starting from Rs 790.",
     badge: "Ramzan Deal",
-    image: "/images/hero/hero-pizza.webp",
+    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80",
     ctaText: "View Deals",
   },
   {
@@ -509,7 +506,7 @@ export const SPECIAL_DEALS: SpecialDeal[] = [
     price: 1250,
     oldPrice: 1540,
     badge: "Save Rs 290",
-    image: "/images/hero/hero-pizza.webp",
+    image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80",
     ctaText: "Order Now",
   },
   {
@@ -519,7 +516,7 @@ export const SPECIAL_DEALS: SpecialDeal[] = [
     description: "Fries + Nuggets + 2 Pcs Behari Chicken Spin Rolls.",
     price: 1350,
     badge: "Family Deal",
-    image: "/images/hero/hero-pizza.webp",
+    image: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80",
     ctaText: "Order Now",
   },
 ];

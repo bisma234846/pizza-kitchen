@@ -1,7 +1,6 @@
 import HeroSection from "@/components/sections/HeroSection";
-import FeaturedPizzasSection from "@/components/sections/FeaturedPizzasSection";
-import CategoryBrowseSection from "@/components/sections/CategoryBrowseSection";
 import SpecialsSection from "@/components/sections/SpecialsSection";
+import FeaturedPizzasSection from "@/components/sections/FeaturedPizzasSection";
 import AboutSection from "@/components/sections/AboutSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import ContactSection from "@/components/sections/ContactSection";
@@ -10,28 +9,25 @@ import CTASection from "@/components/sections/CTASection";
 export default function HomePage() {
   return (
     <>
-      {/* 1. Strong Hero */}
+      {/* 1. Hero + Confidence Strip */}
       <HeroSection />
 
-      {/* 2. Popular / Signature Pizzas */}
-      <FeaturedPizzasSection />
-
-      {/* 3. Menu Categories Discovery */}
-      <CategoryBrowseSection />
-
-      {/* 4. Current Specials & Deals */}
+      {/* 2. Featured Deals */}
       <SpecialsSection />
 
-      {/* 5. Restaurant Strengths / Story */}
+      {/* 3. Popular Pizzas */}
+      <FeaturedPizzasSection />
+
+      {/* 4. Our Story & Features */}
       <AboutSection />
 
-      {/* 6. Customer Reviews & 4.1★ Ratings */}
+      {/* 5. Customer Testimonials */}
       <TestimonialsSection />
 
-      {/* 7. Store Location & Contact Form */}
+      {/* 6. Location & Contact */}
       <ContactSection />
 
-      {/* 8. Final Order CTA */}
+      {/* 7. Final Order CTA */}
       <CTASection />
     </>
   );

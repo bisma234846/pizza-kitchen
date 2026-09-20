@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ChevronRight, Star, Package, Users, CheckCircle, Clock } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
-import SectionHeading from "@/components/ui/SectionHeading";
-import { Star, Package, Users, CheckCircle, Clock, MapPin } from "lucide-react";
-import { RESTAURANT, FEATURES, CONTACT } from "@/lib/data";
+import { RESTAURANT, FEATURES } from "@/lib/data";
 
 export default function AboutSection() {
   const getFeatureIcon = (iconName: string) => {
@@ -23,85 +24,51 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="py-16 sm:py-20 bg-[#FFF8F0] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          badge="Our Story & Quality"
-          title="Crafted With Passion In Faisalabad"
-          subtitle="From hand-kneaded dough to our secret spice recipes, every slice tells a story of taste and commitment."
-        />
+    <section id="about" className="bg-[#fffaf0] overflow-hidden">
+      {/* Story Section */}
+      <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-24 lg:grid-cols-2 lg:px-8">
+        {/* Left Image */}
+        <AnimatedSection className="relative">
+          <Image
+            src="/pizza-scene.png"
+            alt="The Pizza Kitchen team preparing pizzas"
+            width={800}
+            height={600}
+            className="aspect-[4/3] w-full rounded-[2rem] object-cover shadow-xl"
+          />
+          <div className="absolute -bottom-5 -right-3 rounded-2xl bg-[#ffd34e] px-5 py-4 text-center shadow-lg">
+            <div className="font-serif text-3xl font-black text-[#153b2e]">8+</div>
+            <div className="text-[10px] font-black uppercase tracking-widest text-[#153b2e]">years of flavour</div>
+          </div>
+        </AnimatedSection>
 
-        {/* Main 2-Column Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center mb-14 sm:mb-16">
-          {/* Left Column: Story Text & Badges */}
-          <AnimatedSection className="lg:col-span-7 flex flex-col gap-5">
-            <h3 className="text-2xl sm:text-3xl font-black text-stone-900 leading-snug">
-              Welcome to <span className="text-red-600">The Pizza Kitchen</span> — Faisalabad's Favorite Slice
-            </h3>
+        {/* Right Text */}
+        <AnimatedSection delay={0.15}>
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#e74728]">Our kitchen, your table</p>
+          <h2 className="mt-4 max-w-lg font-serif text-5xl font-black leading-tight text-[#153b2e]">A little slice of joy, made here.</h2>
+          <p className="mt-5 max-w-lg leading-8 text-[#61766b]">
+            We started with one oven, a family recipe and a big love for feeding our city. Today, every pizza still gets the same care: dough mixed fresh each morning, sauces simmered in-house, and toppings chosen for flavour, not shortcuts.
+          </p>
+          <Link href="/menu" className="mt-7 inline-flex items-center gap-2 font-black text-[#e74728]">
+            Meet the menu <ChevronRight className="size-4" />
+          </Link>
+        </AnimatedSection>
+      </div>
 
-            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
-              Located at Susan Road, Faisalabad, The Pizza Kitchen has grown into one of the city’s most beloved spots for pizza enthusiasts, hot wing lovers, and pasta connoisseurs alike.
-            </p>
-
-            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
-              Whether you are stopping by for a cozy family dine-in meal, picking up a hot takeaway, or ordering home delivery right to your doorstep, we guarantee golden-baked crusts, generous toppings, and prompt service every single time.
-            </p>
-
-            {/* Quick Stats Grid */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-stone-200">
-              <div className="p-4 rounded-2xl bg-white border border-stone-200/80 text-center shadow-xs">
-                <span className="text-2xl sm:text-3xl font-black text-red-600 block">{RESTAURANT.rating}★</span>
-                <span className="text-xs text-stone-500 font-bold">{RESTAURANT.reviewCount}+ Reviews</span>
-              </div>
-              <div className="p-4 rounded-2xl bg-white border border-stone-200/80 text-center shadow-xs">
-                <span className="text-2xl sm:text-3xl font-black text-stone-900 block">30M</span>
-                <span className="text-xs text-stone-500 font-bold">Fast Delivery</span>
-              </div>
-              <div className="p-4 rounded-2xl bg-white border border-stone-200/80 text-center shadow-xs">
-                <span className="text-2xl sm:text-3xl font-black text-green-700 block">100%</span>
-                <span className="text-xs text-stone-500 font-bold">Fresh & Halal</span>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* Right Column: Branch Showcase Card */}
-          <AnimatedSection delay={0.15} className="lg:col-span-5">
-            <div className="relative rounded-3xl overflow-hidden shadow-xl bg-stone-900 aspect-4/3 sm:aspect-square flex items-center justify-center border-4 border-white">
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
-                style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000&auto=format&fit=crop')`,
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-transparent" />
-
-              {/* Bottom Ambiance Overlay Tag */}
-              <div className="absolute bottom-5 inset-x-5 p-4 rounded-2xl bg-stone-900/95 backdrop-blur-md border border-stone-700/60 text-white flex items-center justify-between">
-                <div>
-                  <p className="font-black text-sm">Susan Road Branch</p>
-                  <p className="text-[11px] text-stone-400">Cozy Family Dining & Takeaway</p>
-                </div>
-                <span className="px-3 py-1.5 rounded-full bg-red-600 text-white text-[10px] font-black uppercase tracking-wider">
-                  Open Daily
-                </span>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-
-        {/* 4 Feature Cards */}
+      {/* Feature Cards */}
+      <div className="mx-auto max-w-7xl px-5 pb-20 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {FEATURES.map((feature, idx) => (
             <AnimatedSection
               key={feature.id}
               delay={idx * 0.08}
-              className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-xs hover:border-red-300 hover:shadow-md transition-all duration-300 flex flex-col gap-3"
+              className="p-6 rounded-2xl bg-white border border-[#eadfca] shadow-[0_4px_20px_rgba(38,60,45,.04)] hover:border-[#e74728]/30 hover:shadow-md transition-all duration-300 flex flex-col gap-3"
             >
-              <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-xl bg-[#fef3d4] flex items-center justify-center">
                 {getFeatureIcon(feature.icon)}
               </div>
-              <h4 className="text-base font-black text-stone-900">{feature.title}</h4>
-              <p className="text-xs sm:text-sm text-stone-500 leading-relaxed">
+              <h4 className="text-base font-black text-[#153b2e]">{feature.title}</h4>
+              <p className="text-sm text-[#61766b] leading-relaxed">
                 {feature.description}
               </p>
             </AnimatedSection>
